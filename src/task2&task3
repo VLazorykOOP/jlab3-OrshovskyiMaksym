@@ -1,0 +1,170 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+
+        Money money = new Money("$");
+        Fraction fraction = new Fraction();
+
+        System.out.println("Input a and b:");
+        double a = scan.nextDouble();
+        double b = scan.nextDouble();
+
+        money.add(a, b);
+        fraction.minus(a, b);
+
+        System.out.println("\n");
+
+        System.out.println("Input a and b:");
+        double a1 = scan.nextDouble();
+        double b1 = scan.nextDouble();
+
+        MoneyImpl money1 = new MoneyImpl(" грн");
+        FractionImpl fraction1 = new FractionImpl();
+
+        fraction1.multiplication(a1, b1);
+        money1.division(a1,b1);
+    }
+}
+public interface PairInter {
+     public void add(double a, double b);
+
+     public void minus(double a, double b);
+
+     public void multiplication(double a, double b);
+
+     public void division(double a, double b);
+}
+public abstract class Pair {
+
+    private double a;
+
+    private double b;
+//    abstract void add(double a, double b);
+//
+//    abstract void minus(double a, double b);
+//
+//    abstract void multiplication(double a, double b);
+//
+//    abstract void division(double a, double b);
+
+}
+public class Money extends Pair {
+
+    private String currencySign;
+
+    public String getCurrencySign() {
+        return currencySign;
+    }
+
+    public void setCurrencySign(String currencySign) {
+        this.currencySign = currencySign;
+    }
+
+    public Money(String currencySign) {
+        this.currencySign = currencySign;
+    }
+
+
+    void add(double a, double b) {
+        System.out.println(a + b + currencySign);
+    }
+
+
+    void minus(double a, double b) {
+        System.out.println( a - b + currencySign);
+    }
+
+
+    void multiplication(double a, double b) {
+        System.out.println( a * b + currencySign);
+    }
+
+
+    void division(double a, double b) {
+        System.out.println(a / b + currencySign);
+    }
+}
+public class Fraction extends Pair{
+
+
+
+
+    void add(double a, double b) {
+        System.out.println(a + b);
+    }
+
+
+    void minus(double a, double b) {
+        System.out.println( a - b);
+    }
+
+
+    void multiplication(double a, double b) {
+        System.out.println( a * b);
+    }
+
+
+    void division(double a, double b) {
+        System.out.println(a / b);
+    }
+}
+public class MoneyImpl implements PairInter {
+
+    private String currencySign;
+
+    public String getCurrencySign() {
+        return currencySign;
+    }
+
+    public void setCurrencySign(String currencySign) {
+        this.currencySign = currencySign;
+    }
+
+    public MoneyImpl(String currencySign) {
+        this.currencySign = currencySign;
+    }
+
+    @Override
+    public void add(double a, double b) {
+        System.out.println(a + b + currencySign);
+    }
+
+    @Override
+    public void minus(double a, double b) {
+        System.out.println( a - b + currencySign);
+    }
+
+    @Override
+    public void multiplication(double a, double b) {
+        System.out.println( a * b + currencySign);
+    }
+
+    @Override
+    public void division(double a, double b) {
+        System.out.println(a / b + currencySign);
+    }
+}
+public class FractionImpl implements PairInter{
+    @Override
+    public void add(double a, double b) {
+        System.out.println(a + b);
+    }
+
+    @Override
+    public void minus(double a, double b) {
+        System.out.println( a - b);
+    }
+
+    @Override
+    public void multiplication(double a, double b) {
+        System.out.println( a * b);
+    }
+
+    @Override
+    public void division(double a, double b) {
+        System.out.println(a / b);
+    }
+}
