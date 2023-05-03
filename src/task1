@@ -1,0 +1,182 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+
+        System.out.print("Input climate of place: ");
+        String placeClimate = scan.nextLine();
+        Place place = new Place(placeClimate);
+
+
+        System.out.print("\nInput region name: ");
+        String regionName = scan.nextLine();
+
+        System.out.print("Input area: ");
+        int areaRegion = scan.nextInt();
+
+        System.out.print("Input climate: ");
+        String climateRegion = scan.next();
+
+
+        Region region = new Region(climateRegion, regionName, areaRegion);
+
+
+            System.out.print("\nInput city name: ");
+            String cityName = scan.next();
+
+            System.out.print("Input mayor name: ");
+            String mayorName = scan.next();
+
+            System.out.print("Input area: ");
+            int areaCity = scan.nextInt();
+
+            System.out.print("Input climate: ");
+            String climateCity = scan.next();
+
+            City city = new City(climateCity, cityName, areaCity, mayorName);
+
+
+                System.out.print("\nInput metropolis name: ");
+                String metropolisName = scan.next();
+
+                System.out.print("Input mayor name: ");
+                String mayorName2 = scan.next();
+
+                System.out.print("Input area: ");
+                int areaMetropolis = scan.nextInt();
+
+                System.out.print("Input climate: ");
+                String climateMetropolis = scan.next();
+
+        Metropolis metropolis = new Metropolis(climateMetropolis, metropolisName, areaMetropolis, mayorName2);
+
+
+
+        Place[] places = new Place[4];
+        places[0] = place;
+        places[1] = city;
+        places[2] = region;
+        places[3] = metropolis;
+
+        for (int i = 0; i < places.length; i++) {
+            places[i].show() ;
+            System.out.println("\n");
+        }
+
+    }
+}
+public class Place {
+
+    private String climate;
+
+    public Place(String climate) {
+        this.climate = climate;
+    }
+
+    public void show(){
+        System.out.println(toString());
+    }
+
+    @Override
+    public String toString() {
+        return "Climate: " + climate;
+    }
+
+    public String getClimate() {
+        return climate;
+    }
+
+    public void setClimate(String climate) {
+        this.climate = climate;
+    }
+}
+public class Region extends Place {
+    private String name;
+    private int area;
+
+
+    public Region(String climate, String name, int area) {
+        super(climate);
+        this.name = name;
+        this.area = area;
+    }
+    @Override
+    public void show(){
+        System.out.println(toString());
+    }
+
+    @Override
+    public String toString() {
+        return "Region name:" + name + " Area: " + area + " " + super.toString();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
+        this.area = area;
+    }
+}
+public class City extends Region{
+
+    private String mayorName;
+
+    public City(String climate, String name, int area, String mayorName) {
+        super(climate, name, area);
+        this.mayorName = mayorName;
+    }
+    @Override
+    public void show(){
+        System.out.println(toString());
+    }
+
+    @Override
+    public String toString() {
+        return "City name:" + getName() + " Area: " + getArea() + " " + "Climate: " + getClimate() + " Mayor name: " + mayorName;
+    }
+
+    public String getMayorName() {
+        return mayorName;
+    }
+
+    public void setMayorName(String mayorName) {
+        this.mayorName = mayorName;
+    }
+}
+public class Metropolis extends Region {
+
+    private String mayorName;
+    public Metropolis(String climate, String name, int area, String mayorName) {
+        super(climate, name, area);
+        this.mayorName = mayorName;
+    }
+
+    @Override
+    public void show() {
+        System.out.println(toString());
+    }
+
+    @Override
+    public String toString() {
+        return "Metropolis name:" + getName() + " Area: " + getArea() +  " Climate: " + getClimate() + " Mayor name: " + mayorName;
+    }
+
+    public String getMayorName() {
+        return mayorName;
+    }
+
+    public void setMayorName(String mayorName) {
+        this.mayorName = mayorName;
+    }
+}
